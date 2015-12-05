@@ -1,0 +1,42 @@
+@model IEnumerable<FilmCritic.Models.Review>
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<h2>Reviews</h2>
+
+<p>
+    <a asp-action="Create">Write a New Review</a>
+</p>
+<table class="reviews-table" typeof="">
+    
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <b>Film:</b>
+            @Html.DisplayFor(modelItem => item.FilmTitle)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.Title):</b>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.ReviewText):</b>
+            @Html.DisplayFor(modelItem => item.ReviewText)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+        </td>
+    </tr>
+}
+</table>

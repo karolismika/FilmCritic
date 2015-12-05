@@ -1,0 +1,61 @@
+@model IEnumerable<FilmCritic.Models.Film>
+
+@{
+    ViewData["Title"] = "Films";
+}
+
+<h2>Films</h2>
+
+<p>
+    <a asp-action="Create">Submit New</a>
+</p>
+
+<form asp-controller="Films" asp-action="Index" method="get">
+    <p>
+        Genre: @Html.DropDownList("FilmGenre", (IEnumerable<SelectListItem>)ViewData["GenreList"], "All")
+        Title: <input type="text" name="TitleSearchString">
+        Name: <input type="text" name="NameSearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            Reviews
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>        
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            <a href="@item.Link">Click Here</a>
+        </td>
+        <td>
+            <a asp-action="Reviews" asp-route-id="@item.ID">Read Reviews</a>
+        </td>
+    </tr>
+}
+</table>

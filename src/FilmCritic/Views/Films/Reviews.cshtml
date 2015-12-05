@@ -1,0 +1,30 @@
+@model List<FilmCritic.Models.Review>
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<h2>Reviews</h2>
+    
+@foreach (var item in Model)
+{
+    <table class="reviews-table">
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>@Html.DisplayFor(modelItem => item.Title)</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewText)
+            </td>
+        </tr>
+    </table>
+}
+
+    
